@@ -26,15 +26,11 @@ class SignUp extends React.Component {
   };
 
   handleErrors = () => {
-    if (
-      Object.values(this.state.fields)
-        .map((field) => field.error)
-        .some((error) => error)
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    const isError = Object.values(this.state.fields)
+      .map((field) => field.error)
+      .some((error) => error);
+    console.log(isError);
+    return isError;
   };
 
   handleReset = () => {
