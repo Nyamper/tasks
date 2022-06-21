@@ -33,3 +33,7 @@ button:disabled {
   color: #ccc;
   cursor: no-drop;
 }
+
+div.error {
+  color: red;
+}
