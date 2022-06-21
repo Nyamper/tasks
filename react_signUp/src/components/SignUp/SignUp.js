@@ -29,7 +29,6 @@ class SignUp extends React.Component {
     const isError = Object.values(this.state.fields)
       .map((field) => field.error)
       .some((error) => error);
-    console.log(isError);
     return isError;
   };
 
@@ -64,7 +63,6 @@ class SignUp extends React.Component {
               </label>
             );
           })}
-
           <div className={classes.container}>
             <button onClick={this.handleReset}>Reset</button>
             <button type="submit" disabled={this.handleErrors()}>
