@@ -52,8 +52,12 @@ class SignUp extends React.Component {
           {Object.entries(fields).map(([fieldName, fieldValue]) => {
             const { title, type, name, value, placeholder, error } = fieldValue;
             return (
-              <label name={fieldName} key={fieldName}>
+              <div key={fieldName}>
+                <label name={fieldName} htmlFor={name}>
+                  {title}
+                </label>
                 <input
+                  id={name}
                   title={title}
                   type={type}
                   name={name}
@@ -62,7 +66,7 @@ class SignUp extends React.Component {
                   onChange={this.handleValueChange}
                 />
                 <div className={classes.error}>{error}</div>
-              </label>
+              </div>
             );
           })}
           <div className={classes.container}>
