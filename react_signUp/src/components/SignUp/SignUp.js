@@ -4,10 +4,7 @@ import classes from './SignUp.module.scss';
 import fields from './utils/initialState';
 
 class SignUp extends React.Component {
-  constructor() {
-    super();
-    this.state = { fields };
-  }
+  state = { fields };
 
   handleValueChange = (event) => {
     const { value, name } = event.target;
