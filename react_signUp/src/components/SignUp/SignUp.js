@@ -45,7 +45,11 @@ class SignUp extends React.Component {
     const { fields } = this.state;
     return (
       <>
-        <form onSubmit={this.handleSubmit} className={classes['sign-form']}>
+        <form
+          onSubmit={this.handleSubmit}
+          onReset={this.handleReset}
+          className={classes['sign-form']}
+        >
           {Object.entries(fields).map(([fieldName, fieldValue]) => {
             const { title, type, name, value, placeholder, error } = fieldValue;
             return (
@@ -67,7 +71,7 @@ class SignUp extends React.Component {
             );
           })}
           <div className={classes.container}>
-            <button onClick={this.handleReset}>Reset</button>
+            <button type="reset">Reset</button>
             <button type="submit" disabled={this.getFormError()}>
               Submit
             </button>
