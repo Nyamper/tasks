@@ -1,5 +1,12 @@
 import React from 'react';
-import classes from './SignUp.module.scss';
+
+import {
+  StyledButton,
+  StyledButtonContainer,
+  StyledInput,
+  StyledError,
+  StyledForm,
+} from './styles/styles';
 
 import fields from './utils/initialState';
 
@@ -45,11 +52,7 @@ class SignUp extends React.Component {
     const { fields } = this.state;
     return (
       <>
-        <form
-          onSubmit={this.handleSubmit}
-          onReset={this.handleReset}
-          className={classes['sign-form']}
-        >
+        <StyledForm onSubmit={this.handleSubmit} onReset={this.handleReset}>
           {Object.entries(fields).map(([fieldName, fieldValue]) => {
             const { title, type, name, value, placeholder, error } = fieldValue;
             return (
@@ -57,7 +60,7 @@ class SignUp extends React.Component {
                 <label name={fieldName} htmlFor={name}>
                   {title}
                 </label>
-                <input
+                <StyledInput
                   id={name}
                   title={title}
                   type={type}
@@ -66,17 +69,17 @@ class SignUp extends React.Component {
                   placeholder={placeholder}
                   onChange={this.handleValueChange}
                 />
-                <div className={classes.error}>{error}</div>
+                <StyledError>{error}</StyledError>
               </div>
             );
           })}
-          <div className={classes.container}>
-            <button type="reset">Reset</button>
-            <button type="submit" disabled={this.getFormError()}>
+          <StyledButtonContainer>
+            <StyledButton type="reset">Reset</StyledButton>
+            <StyledButton type="submit" disabled={this.getFormError()}>
               Submit
-            </button>
-          </div>
-        </form>
+            </StyledButton>
+          </StyledButtonContainer>
+        </StyledForm>
       </>
     );
   }

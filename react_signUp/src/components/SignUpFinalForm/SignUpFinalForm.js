@@ -1,7 +1,13 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
 
-import classes from './SignUpFinalForm.module.scss';
+import {
+  StyledButton,
+  StyledButtonContainer,
+  StyledInput,
+  StyledError,
+  StyledForm,
+} from './styles/styles';
 
 import fields from '../../constants';
 import { validators } from '../../utils';
@@ -22,7 +28,9 @@ class SignUpFinalForm extends React.Component {
     return result;
   };
 
-  onSubmit(...args) {}
+  onSubmit(values) {
+    console.log(values);
+  }
 
   render() {
     return (
@@ -30,8 +38,8 @@ class SignUpFinalForm extends React.Component {
         <Form
           onSubmit={this.onSubmit}
           validate={(values) => this.combineValidators(values)}
-          render={({ handleSubmit, form, submitting, pristine, touched }) => (
-            <form onSubmit={handleSubmit} className={classes['sign-form']}>
+          render={({ handleSubmit, form, submitting, pristine }) => (
+            <StyledForm onSubmit={handleSubmit}>
               {Object.entries(fields).map(([fieldName, fieldValue]) => {
                 const { title, type, name, placeholder } = fieldValue;
                 return (
@@ -39,32 +47,31 @@ class SignUpFinalForm extends React.Component {
                     {({ input, meta }) => (
                       <div>
                         <label>{title}</label>
-                        <input
+                        <StyledInput
                           {...input}
                           type={type}
                           placeholder={placeholder}
                         />
                         {meta.error && meta.touched && (
-                          <div className={classes.error}>{meta.error}</div>
+                          <StyledError>{meta.error}</StyledError>
                         )}
                       </div>
                     )}
                   </Field>
                 );
               })}
-              <div className={classes.container}>
-                <button
-                  type="button"
+              <StyledButtonContainer>
+                <StyledButton
                   onClick={form.reset}
                   disabled={submitting || pristine}
                 >
                   Reset
-                </button>
-                <button type="submit" disabled={submitting || pristine}>
+                </StyledButton>
+                <StyledButton type="submit" disabled={submitting || pristine}>
                   Submit
-                </button>
-              </div>
-            </form>
+                </StyledButton>
+              </StyledButtonContainer>
+            </StyledForm>
           )}
         />
       </>
