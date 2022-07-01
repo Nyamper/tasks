@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import CardBook from './CardBook';
+import Spiner from '../utils/Spiner';
 
 import { Grid } from '@mui/material';
 import { Container } from '@mui/system';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 
 import { url } from '../../constants';
 
@@ -41,20 +40,7 @@ const Books = () => {
       <Container>
         <Grid container spacing={5}>
           {isLoading ? (
-            <Box
-              sx={{
-                top: 0,
-                left: 0,
-                bottom: 0,
-                right: 0,
-                position: 'absolute',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <CircularProgress size={100} />
-            </Box>
+            <Spiner />
           ) : (
             books.map((book) => {
               return (

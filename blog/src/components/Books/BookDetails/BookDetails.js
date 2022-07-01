@@ -3,22 +3,21 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-import { url } from '../../constants';
+import Spiner from '../../utils/Spiner';
+
+import { url } from '../../../constants';
 
 import {
-  Box,
   Card,
   CardContent,
   CardHeader,
   CardMedia,
-  CircularProgress,
   Typography,
 } from '@mui/material';
 import { Container } from '@mui/system';
 
 const BookDetails = () => {
-  const params = useParams();
-  console.log(params);
+  const { id } = useParams();
   const [book, setBook] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,7 +27,7 @@ const BookDetails = () => {
     async function fetchData() {
       setIsLoading(true);
       try {
-        const { data } = await axios.get(`${url}/${params.id}`);
+        const { data } = await axios.get(`${url}/${id}`);
         if (!ignore) {
           setBook(data);
           setIsLoading(false);
@@ -48,20 +47,7 @@ const BookDetails = () => {
     <>
       <Container>
         {isLoading ? (
-          <Box
-            sx={{
-              top: 0,
-              left: 0,
-              bottom: 0,
-              right: 0,
-              position: 'absolute',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <CircularProgress size={100} />
-          </Box>
+          <Spiner />
         ) : (
           <Card>
             <CardMedia

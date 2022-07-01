@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import BookDetails from './BookDetails';
-
 import {
   Button,
   Card,
