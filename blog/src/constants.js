@@ -1,4 +1,4 @@
-export const url = 'https://fakerestapi.azurewebsites.net/api/v1/Books';
+export const baseURL = 'https://fakerestapi.azurewebsites.net/api/v1/books';
 
 export const itemData = [
   {

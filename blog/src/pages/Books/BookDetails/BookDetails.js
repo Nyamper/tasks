@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-import axios from 'axios';
+import { useAxios } from '../../../hooks/use-Axios';
+
 import { useParams } from 'react-router-dom';
 
-import Spiner from '../../utils/Spiner';
-
-import { url } from '../../../constants';
+import Spinner from '../../../components/Spinner';
 
 import {
   Card,
@@ -17,38 +16,15 @@ import {
 import { Container } from '@mui/system';
 
 const BookDetails = () => {
-  const { id } = useParams();
-  const [book, setBook] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    let ignore = false;
-
-    async function fetchData() {
-      setIsLoading(true);
-      try {
-        const { data } = await axios.get(`${url}/${id}`);
-        if (!ignore) {
-          setBook(data);
-          setIsLoading(false);
-        }
-      } catch (error) {
-        throw new Error(error);
-      }
-    }
-
-    fetchData();
-    return () => {
-      ignore = true;
-    };
-  }, []);
+  const params = useParams();
+  const { books: book, isLoading, isError } = useAxios(`/${params.id}`);
 
   return (
     <>
       <Container>
-        {isLoading ? (
-          <Spiner />
-        ) : (
+        {isLoading && !isError && <Spinner />}
+        {isError && <Spinner status="error" />}
+        {!isLoading && (
           <Card>
             <CardMedia
               component="img"

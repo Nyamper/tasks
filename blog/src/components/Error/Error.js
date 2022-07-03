@@ -1,8 +1,9 @@
-import { CircularProgress } from '@mui/material';
-import { Box } from '@mui/system';
 import React from 'react';
 
-const Spiner = () => {
+import { Alert, AlertTitle } from '@mui/material';
+import { Box } from '@mui/system';
+
+const Error = (cerror) => {
   return (
     <>
       <Box
@@ -17,10 +18,13 @@ const Spiner = () => {
           justifyContent: 'center',
         }}
       >
-        <CircularProgress size={100} />
+        <Alert severity="error">
+          <AlertTitle>Something went wrong</AlertTitle>
+          Don't panic — <strong>we will fix it later!</strong> Maybe
+        </Alert>
       </Box>
     </>
   );
 };
 
-export default Spiner;
+export default Error;
